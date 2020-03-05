@@ -4,7 +4,7 @@
 - Extract TShock to /home/filhit/terraria
 - Download world backup to terraria/Worlds
 - copy TelegramBot.dll to /home/filhit/terraria/ServerPlugins/
-- copy NewtonsoftJson.dll to /home/filhit/terraria/
+- copy NewtonsoftJson.dll (version 11) to /home/filhit/terraria/
 - build TelegramRelay.dll using build-plugin.sh
 - copy it to /home/filhit/terraria/ServerPlugins/
 - Run server and auth
