@@ -142,18 +142,17 @@ namespace Escrollstest.Server {
     }
 
     private async Task BotOnMessageReceived (Message message) {
-      switch (message.Type)
-      {
+      switch (message.Type) {
         case MessageType.Sticker:
           TShock.Utils.Broadcast ($"<{message.From.FirstName}> sent a sticker.", 255, 255, 255);
           break;
         case MessageType.Document:
           TShock.Utils.Broadcast ($"<{message.From.FirstName}> sent a document.", 255, 255, 255);
           break;
-        case MessageType.Text when message.Text.StartsWith("/ping"):
+        case MessageType.Text when message.Text.StartsWith ("/ping"):
           SendTelegramMessage ($"pong (chat id: {message.Chat.Id})", message.Chat.Id);
           break;
-        case MessageType.Text when message.Text.StartsWith("/players"):
+        case MessageType.Text when message.Text.StartsWith ("/players"):
           var activePlayers = TShock.Players.Where (x => x != null && x.Active);
           if (activePlayers.Any ()) {
             SendTelegramMessage ($"Active players: {string.Join(",", activePlayers.Select(x => x.Name))}.", message.Chat.Id);
@@ -161,7 +160,7 @@ namespace Escrollstest.Server {
             SendTelegramMessage ("No active players detected.", message.Chat.Id);
           }
           break;
-        case MessageType.Text when message.Text.StartsWith("/"):
+        case MessageType.Text when message.Text.StartsWith ("/"):
           break;
         case MessageType.Text:
           TShock.Utils.Broadcast ($"<{message.From.FirstName}>: {message.Text}", 255, 255, 255);
