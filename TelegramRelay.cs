@@ -142,27 +142,33 @@ namespace Escrollstest.Server {
     }
 
     private async Task BotOnMessageReceived (Message message) {
-      if (message.Type == MessageType.Sticker) {
-        TShock.Utils.Broadcast ($"<{message.From.FirstName}> sent a sticker.", 255, 255, 255);
-      } else if (message.Type == MessageType.Document) {
-        TShock.Utils.Broadcast ($"<{message.From.FirstName}> sent a document.", 255, 255, 255);
-      } else if (message.Type == MessageType.Text) {
-        if (message.Text.StartsWith ("/")) {
-          if (message.Text.StartsWith ("/ping")) {
-            SendTelegramMessage ($"pong (chat id: {message.Chat.Id})", message.Chat.Id);
-          } else if (message.Text.StartsWith ("/players")) {
-            var activePlayers = TShock.Players.Where (x => x != null && x.Active);
-            if (activePlayers.Any ()) {
-              SendTelegramMessage ($"Active players: {string.Join(",", activePlayers.Select(x => x.Name))}.", message.Chat.Id);
-            } else {
-              SendTelegramMessage ("No active players detected.", message.Chat.Id);
-            }
+      switch (message.Type)
+      {
+        case MessageType.Sticker:
+          TShock.Utils.Broadcast ($"<{message.From.FirstName}> sent a sticker.", 255, 255, 255);
+          break;
+        case MessageType.Document:
+          TShock.Utils.Broadcast ($"<{message.From.FirstName}> sent a document.", 255, 255, 255);
+          break;
+        case MessageType.Text when message.Text.StartsWith("/ping"):
+          SendTelegramMessage ($"pong (chat id: {message.Chat.Id})", message.Chat.Id);
+          break;
+        case MessageType.Text when message.Text.StartsWith("/players"):
+          var activePlayers = TShock.Players.Where (x => x != null && x.Active);
+          if (activePlayers.Any ()) {
+            SendTelegramMessage ($"Active players: {string.Join(",", activePlayers.Select(x => x.Name))}.", message.Chat.Id);
+          } else {
+            SendTelegramMessage ("No active players detected.", message.Chat.Id);
           }
-        } else {
+          break;
+        case MessageType.Text when message.Text.StartsWith("/"):
+          break;
+        case MessageType.Text:
           TShock.Utils.Broadcast ($"<{message.From.FirstName}>: {message.Text}", 255, 255, 255);
-        }
-      } else {
-        Console.WriteLine ($"Receive message type: {message.Type}");
+          break;
+        default:
+          Console.WriteLine ($"Receive message type: {message.Type}");
+          break;
       }
     }
 
