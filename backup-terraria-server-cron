@@ -1,0 +1,1 @@
+*/10 * * * * filhit bash -c '/home/filhit/escrollstest-server/New-Backup.ps1 > >(/usr/bin/logger -t terraria-backup -p user.info) 2> >(/usr/bin/logger -t terraria-backup -p user.err)'

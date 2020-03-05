@@ -1,0 +1,13 @@
+[Unit]
+Description=Runs escrollstest terraria server
+
+[Service]
+ExecStart=/home/filhit/escrollstest-server/start-server.sh
+ExecStop=/home/filhit/escrollstest-server/stop-server.sh
+WorkingDirectory=/home/filhit/terraria
+Restart=always
+User=filhit
+
+[Install]
+WantedBy=multi-user.target
+

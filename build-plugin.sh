@@ -1,0 +1,1 @@
+csc -t:library TelegramRelay.cs Config.cs TelegramBotClientPollingExtensions.cs IUpdateHandler.cs DefaultUpdateHandler.cs -lib:/home/filhit/terraria/ServerPlugins -lib:/home/filhit/terraria -r:TerrariaServer.exe -r:OTAPI.dll -r:TShockAPI.dll -r:System.Net.Http.dll -r:Newtonsoft.Json.dll -r:Telegram.Bot.dll
