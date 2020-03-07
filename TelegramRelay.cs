@@ -89,6 +89,18 @@ namespace Escrollstest.Server {
         return;
       }
 
+      if (Regex.IsMatch (args.Message.ToString (), @"Looks like .+ are throwing a party")) {
+        return;
+      }
+
+      if (Regex.IsMatch (args.Message.ToString (), @"Party time's over!")) {
+        return;
+      }
+
+      if (Regex.IsMatch (args.Message.ToString (), @"\S+ the Traveling Merchant has (arrived|departed)!")) {
+        return;
+      }
+
       SendTelegramMessage (args.Message.ToString ());
     }
 
