@@ -89,7 +89,7 @@ namespace Escrollstest.Server {
         return;
       }
 
-      if (Regex.IsMatch (args.Message.ToString (), @"Looks like .+ are throwing a party")) {
+      if (Regex.IsMatch (args.Message.ToString (), @"Looks like .+ (is|are) throwing a party")) {
         return;
       }
 
