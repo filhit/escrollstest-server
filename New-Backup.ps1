@@ -3,7 +3,7 @@
 $ErrorActionPreference = "Stop"
 
 $AwsCliPath = "/usr/local/bin/aws"
-$WorldPath = "/home/filhit/terraria/Worlds/TyshkaWorld.wld"
+$WorldPath = "/home/filhit/terraria/Worlds/EdgeOfSacrilege.wld"
 $S3Bucket = "tyshkavets-terraria-backups"
 
 $BackupPath = "$WorldPath.bak"
