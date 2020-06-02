@@ -135,6 +135,14 @@ namespace Escrollstest.Server {
       }
     }
 
+    private string PrepareMessageForBroadcasting(string message) {
+      return string.Join(
+        " ",
+        message.Split(new[]{'\r','\n'}, StringSplitOptions.RemoveEmptyEntries)
+            .Select(x => x.Trim())
+            .Select(x => Regex.IsMatch(x, @"\p{P}$") ? x : $"{x}."));
+    }
+
     private async Task BotOnMessageReceived (Message message) {
       switch (message.Type) {
         case MessageType.Sticker:
@@ -157,7 +165,7 @@ namespace Escrollstest.Server {
         case MessageType.Text when message.Text.StartsWith ("/"):
           break;
         case MessageType.Text:
-          TShock.Utils.Broadcast ($"<{message.From.FirstName}>: {message.Text}", 255, 255, 255);
+          TShock.Utils.Broadcast (PrepareMessageForBroadcasting($"<{message.From.FirstName}>: {message.Text}"), 255, 255, 255);
           break;
         default:
           Console.WriteLine ($"Receive message type: {message.Type}");
