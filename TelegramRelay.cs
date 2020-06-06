@@ -78,7 +78,7 @@ namespace Escrollstest.Server {
         return;
       }
 
-      if (Regex.IsMatch (args.Message.ToString (), @"Saving world. Momentary lag might result from this.")) {
+      if (Regex.IsMatch (args.Message.ToString (), @"^Saving world\.\.\.$")) {
         return;
       }
 
